@@ -8,11 +8,12 @@ type InputProps = {
   type: InputType;
   label: string;
   name: string;
+  customCss?: string;
 };
 
 const manrope = Manrope({ weight: ['700', '300', '500'], subsets: ['latin'] });
 
-export default function Input({ type, label, name }: InputProps) {
+export default function Input({ type, label, name, customCss }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [hasValue, setHasValue] = useState(false);
   const [_type, setType] = useState('');
@@ -35,10 +36,10 @@ export default function Input({ type, label, name }: InputProps) {
   }, [type]);
 
   return (
-    <div className="flex flex-col w-full my-6 relative">
+    <div className={`flex flex-col w-full my-2 relative ${customCss}`}>
       <label
         className={`absolute top-3 left-3 text-sm font-semibold transition-transform duration-300 ${manrope.className}
-          ${isFocused || hasValue ? 'transform -translate-y-8 scale-75 left-0' : ''} dark:text-bg-white text-colors-text_grey`}
+          ${isFocused || hasValue ? 'transform -translate-y-8 scale-75 left-1' : ''} dark:text-bg-white text-colors-text_grey`}
       >
         {label}
       </label>
