@@ -28,7 +28,7 @@ export default function RootLayout({
       <body className="dark:bg-bg-dark bg-bg-white">
         <div className="flex h-screen items-center justify-center">
           <div
-            className={`rounded-xl p-6 dark:bg-zinc-800 bg-white ring-1 ring-inset dark:ring-black/50 ring-slate-200/50 shadow-sm lg:min-w-[500px] lg:min-h-[550px] xl:max-w-[500px] xl:max-h-[600px] h-[80%] w-[80%]`}
+            className={`rounded-xl p-8  dark:bg-zinc-800 bg-white ring-1 ring-inset dark:ring-black/50 ring-slate-200/50 shadow-sm lg:min-w-[500px] lg:min-h-[550px] xl:max-w-[500px] xl:max-h-[600px] w-[80%] `}
           >
             <div className="flex items-center gap-1 justify-center w-full p-6">
               <Link href="/">

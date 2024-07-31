@@ -11,6 +11,7 @@ type ButtonProps = {
   customCss?: string;
   loading?: boolean;
   disabled?: boolean;
+  handleClick?: () => any;
 };
 
 const manrope = Manrope({ weight: ['700', '300', '500'], subsets: ['latin'] });
@@ -22,14 +23,16 @@ export default function Button({
   customCss,
   loading,
   disabled,
+  handleClick,
 }: ButtonProps) {
   const [isDarkMode] = useTheme(state => [state.isDarkMode]);
 
   return (
     <button
       type={type}
-      className={`${customCss} py-2 px-8 w-full ${color ? color : 'bg-colors-primary'} rounded-2xl ${manrope.className} dark:text-bg-dark text-white font-bold shadow-sm cursor-pointer transition-colors hover:bg-colors-primary_hover`}
+      className={`${customCss ? customCss : ''} py-2 px-8 w-full ${color ? color : 'bg-colors-primary'} rounded-2xl ${manrope.className} dark:text-bg-dark text-white font-bold shadow-sm cursor-pointer transition-colors hover:bg-colors-primary_hover`}
       disabled={disabled}
+      onClick={handleClick}
     >
       {!loading ? (
         <>{children}</>

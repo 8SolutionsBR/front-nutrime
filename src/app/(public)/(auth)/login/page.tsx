@@ -26,14 +26,16 @@ export default function Login() {
       <Input type="email" label="E-mail" name="email" customCss="col-span-2 mt-4" />
       <Input type="password" label="Senha" name="senha" customCss="col-span-2 mt-2.5" />
 
-      <Checkbox name="lembrar" label="Lembrar-me" customCss="mt-2" />
-      <Link href="/login" className="flex justify-end mt-2">
-        <span
-          className={`text-sm text-colors-text_grey font-semibold ${manrope.className} transition duration-200 hover:text-colors-primary dark:text-bg-white dark:hover:text-colors-primary`}
-        >
-          Esqueceu sua senha ?
-        </span>
-      </Link>
+      <div className="col-span-2 flex flex-col md:flex-row md:justify-between">
+        <Checkbox name="lembrar" label="Lembrar-me" customCss="mt-2" />
+        <Link href="/login" className="flex justify-end mt-2">
+          <span
+            className={`text-xs md:text-sm text-colors-text_grey font-semibold ${manrope.className} transition duration-200 hover:text-colors-primary dark:text-bg-white dark:hover:text-colors-primary`}
+          >
+            Esqueceu sua senha ?
+          </span>
+        </Link>
+      </div>
 
       <Button type="submit" customCss="mt-6 mb-2 col-span-2" loading={loading} disabled={loading}>
         Entrar
@@ -55,7 +57,7 @@ export default function Login() {
       </Button>
 
       <div
-        className={`text-sm text-colors-text_grey font-semibold ${manrope.className} flex justify-center w-full mt-6 gap-1 dark:text-bg-white col-span-2`}
+        className={`text-xs md:text-sm text-colors-text_grey font-semibold ${manrope.className} flex justify-center w-full mt-6 gap-1 dark:text-bg-white col-span-2`}
       >
         Não possui uma conta ?
         <span className="text-colors-primary cursor-pointer hover:underline">

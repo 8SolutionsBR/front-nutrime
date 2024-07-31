@@ -1,5 +1,5 @@
 import { Manrope } from 'next/font/google';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 
 type InputType = 'text' | 'email' | 'password' | 'number';
@@ -17,6 +17,7 @@ export default function Input({ type, label, name, customCss }: InputProps) {
   const [isFocused, setIsFocused] = useState(false);
   const [hasValue, setHasValue] = useState(false);
   const [_type, setType] = useState('');
+  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setHasValue(event.target.value.length > 0);
@@ -31,21 +32,27 @@ export default function Input({ type, label, name, customCss }: InputProps) {
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
+  const handleLabelClick = () => {
+    inputRef.current?.focus();
+  };
+
   useEffect(() => {
     setType(type);
   }, [type]);
 
   return (
-    <div className={`flex flex-col w-full my-2 relative ${customCss}`}>
+    <div className={`flex flex-col w-full my-2 relative ${customCss ? customCss : ''}`}>
       <label
-        className={`absolute top-3 left-3 text-sm font-semibold transition-transform duration-300 ${manrope.className}
-          ${isFocused || hasValue ? 'transform -translate-y-8 scale-75 left-1' : ''} dark:text-bg-white text-colors-text_grey`}
+        className={`absolute cursor-text top-3 left-3 text-sm font-semibold transition-transform duration-300 ${manrope.className}
+          ${isFocused || hasValue ? 'transform -translate-y-8 scale-75 left-px' : ''} dark:text-bg-white text-colors-text_grey`}
+        onClick={handleLabelClick}
       >
         {label}
       </label>
       <input
         type={_type}
         name={name}
+        ref={inputRef}
         className={`border dark:border-colors-text_grey w-full outline-none py-3 pl-4 rounded-lg dark:bg-bg-dark dark:border-transparent dark:text-bg-white bg-bg-white focus:border-colors-primary dark:focus:border-colors-primary shadow-sm ${manrope.className} text-sm`}
         onFocus={handleFocus}
         onBlur={handleBlur}
