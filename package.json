@@ -14,10 +14,14 @@
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && yarn && yarn dev"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
+    "@types/lodash": "^4.17.7",
     "autoprefixer": "^10.4.19",
     "eslint-plugin-unused-imports": "^4.0.1",
     "framer-motion": "^11.3.18",
     "install": "^0.13.0",
+    "js-cookie": "^3.0.5",
+    "lodash": "^4.17.21",
     "next": "14.2.5",
     "or": "^0.2.0",
     "prettier": "^3.3.3",

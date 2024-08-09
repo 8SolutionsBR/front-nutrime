@@ -3,12 +3,14 @@ import Button from '@/components/Button';
 import Checkbox from '@/components/Checkbox';
 import Input from '@/components/Input/page';
 import Select from '@/components/Select';
+import { useUserStore } from '@/stores/user.store';
 import { Manrope } from 'next/font/google';
 import { useRef, useState } from 'react';
 
 const manrope = Manrope({ weight: ['700', '300', '500', '700'], subsets: ['latin'] });
 
 export default function Register() {
+  const [setUser] = useUserStore(state => [state.setUser]);
   const [step, setStep] = useState(1);
   const formRef = useRef<any>();
 
@@ -18,6 +20,10 @@ export default function Register() {
 
   const handleSubmit = async (form: any) => {
     form.preventDefault();
+    setUser({
+      name: 'Pedro',
+      emailActive: false,
+    });
   };
 
   return (
@@ -65,7 +71,7 @@ export default function Register() {
       {step === 2 && (
         <div className="grid grid-cols-2 col-span-2 gap-2">
           <Input
-            type="text"
+            type="date"
             label="Data de Nascimento"
             name="idade"
             customCss="col-span-2 md:col-span-1"

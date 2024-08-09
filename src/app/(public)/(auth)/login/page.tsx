@@ -28,7 +28,7 @@ export default function Login() {
 
       <div className="col-span-2 flex flex-col md:flex-row md:justify-between">
         <Checkbox name="lembrar" label="Lembrar-me" customCss="mt-2" />
-        <Link href="/login" className="flex justify-end mt-2">
+        <Link href="/recuperar-senha" className="flex justify-end mt-2">
           <span
             className={`text-xs md:text-sm text-colors-text_grey font-semibold ${manrope.className} transition duration-200 hover:text-colors-primary dark:text-bg-white dark:hover:text-colors-primary`}
           >
@@ -61,7 +61,7 @@ export default function Login() {
       >
         Não possui uma conta ?
         <span className="text-colors-primary cursor-pointer hover:underline">
-          <Link href="/register">Criar agora</Link>
+          <Link href="/registro">Criar agora</Link>
         </span>
       </div>
     </form>

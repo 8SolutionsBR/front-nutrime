@@ -2,7 +2,7 @@ import { Manrope } from 'next/font/google';
 import { useState, useEffect, useRef } from 'react';
 import { IoEyeOffOutline, IoEyeOutline } from 'react-icons/io5';
 
-type InputType = 'text' | 'email' | 'password' | 'number';
+type InputType = 'text' | 'email' | 'password' | 'number' | 'date';
 
 type InputProps = {
   type: InputType;
@@ -29,22 +29,28 @@ export default function Input({ type, label, name, customCss }: InputProps) {
     return setType('password');
   };
 
-  const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleFocus = () => {
+    setIsFocused(true);
+    if (type === 'date') return setType('date');
+  };
+  const handleBlur = () => {
+    setIsFocused(false);
+    if (!hasValue) return setType('text');
+  };
 
   const handleLabelClick = () => {
     inputRef.current?.focus();
   };
 
   useEffect(() => {
-    setType(type);
+    setType(type === 'date' ? 'text' : type);
   }, [type]);
 
   return (
-    <div className={`flex flex-col w-full my-2 relative ${customCss ? customCss : ''}`}>
+    <div className={`my-2 relative ${customCss ? customCss : ''} w-full`}>
       <label
-        className={`absolute cursor-text top-3 left-3 text-sm font-semibold transition-transform duration-300 ${manrope.className}
-          ${isFocused || hasValue ? 'transform -translate-y-8 scale-75 left-px' : ''} dark:text-bg-white text-colors-text_grey`}
+        className={`absolute cursor-text top-3 text-sm font-semibold transition-transform duration-300 ${manrope.className}
+          ${isFocused || hasValue ? 'transform -translate-y-7 text-xs' : 'left-3'} dark:text-bg-white text-colors-text_grey`}
         onClick={handleLabelClick}
       >
         {label}
